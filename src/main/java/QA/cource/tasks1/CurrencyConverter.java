@@ -24,7 +24,7 @@ public class CurrencyConverter {
 
     public double convert(double amount, String fromCurrency, String toCurrency) {
     double result=0.0;
-    // if(amount>=0) {
+     if(amount>=0) {
         switch (fromCurrency) {
             case "USD":
                 result = convertFromUSD(amount, toCurrency);
@@ -39,9 +39,9 @@ public class CurrencyConverter {
 
                 throw new IllegalArgumentException("Invalid source currency: " + fromCurrency);
         }
-     /*     }
-   else if(amount<0) {result=-1;
-     System.out.println("amount should be positive value");}*/
+         }
+   else if(amount<0) {result=0;
+     System.out.println("amount should be positive value");}
         return result;
     }
 
