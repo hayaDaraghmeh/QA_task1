@@ -2,7 +2,7 @@ package QA.cource.tasks1Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
-
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -29,6 +29,7 @@ public class CurrencyConverterTest {
 	
 		
 	}
+	@Test
 	public void convertUsdToEurTestZero() {
 		double amount=0.0;
  		System.out.println("Test convert From USD to EUR function with zero value");
@@ -39,6 +40,7 @@ public class CurrencyConverterTest {
 	
 		
 	}
+	@Test
 	public void convertUsdToEurTestNeg() {
 		double amount=-14.75;
  		System.out.println("Test convert From USD to EUR function with negative value");
@@ -49,6 +51,8 @@ public class CurrencyConverterTest {
 	
 		
 	}
+	
+	
 	
 /////////FROM USD EUR
 	
@@ -206,5 +210,33 @@ public class CurrencyConverterTest {
 	
 		
 	}
+	
+	
+	@Test
+	public void FromCurrencyTest() {
+		double amount=10;
+		String fromCurr="LE";
+ 		System.out.println("Test Fromcurrency value if it is vaild");
+		double result=cc1.convert(amount, fromCurr, "EUR");
+		assertTrue(cc1.exep.getMessage()=="Invalid source currency: " + fromCurr);
+		System.out.println("expected result :"+cc1.exep.getMessage());
+		System.out.println("actual result :"+result);
+	
+		
+	}
+	
+	@Test
+	public void ToCurrencyTest() {
+		double amount=10;
+		String toCurr="LE";
+ 		System.out.println("Test Tocurrency value if it is vaild");
+		double result=cc1.convert(amount, "USD", toCurr);
+		assertTrue(cc1.toExep.getMessage()=="Invalid target currency: " + toCurr);
+		System.out.println("expected result :"+cc1.toExep.getMessage());
+		System.out.println("actual result :"+result);
+	
+		
+	}
+	
 	
 }

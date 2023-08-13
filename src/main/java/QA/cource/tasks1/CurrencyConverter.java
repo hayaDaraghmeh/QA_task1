@@ -8,7 +8,8 @@ public class CurrencyConverter {
     private double EurToUsdSRate;
     private double ILSToEurRate;
     private double ILSToUsdRate;
-
+    public IllegalArgumentException exep;
+    public IllegalArgumentException toExep;
 
     public CurrencyConverter() {
 
@@ -36,8 +37,8 @@ public class CurrencyConverter {
                 result = convertFromILS(amount, toCurrency);
                 break;
             default:
-
-                throw new IllegalArgumentException("Invalid source currency: " + fromCurrency);
+                this.exep=new IllegalArgumentException("Invalid source currency: " + fromCurrency);
+                throw exep;
         }
          }
    else if(amount<0) {result=0;
@@ -54,8 +55,10 @@ public class CurrencyConverter {
             case "ILS":
                 return amount * UsdToILSRate;
             default:
-                throw new IllegalArgumentException("Invalid target currency: " + toCurrency);
-        }
+                
+                toExep= new IllegalArgumentException("Invalid target currency: " + toCurrency);
+                throw toExep;
+       }
     }
     private double convertFromEUR(double amount, String toCurrency) {
 
@@ -68,7 +71,8 @@ public class CurrencyConverter {
             case "ILS":
                 return amount * EurToILSRate;
             default:
-                throw new IllegalArgumentException("Invalid target currency: " + toCurrency);
+            	 toExep= new IllegalArgumentException("Invalid target currency: " + toCurrency);
+                 throw toExep;
 
         }
     }
@@ -84,7 +88,8 @@ public class CurrencyConverter {
                 case "EUR":
                     return amount * ILSToEurRate;
                 default:
-                    throw new IllegalArgumentException("Invalid target currency: " + toCurrency);
+                	 toExep= new IllegalArgumentException("Invalid target currency: " + toCurrency);
+                     throw toExep;
 
 
             }
